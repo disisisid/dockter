@@ -1,0 +1,475 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>@stencila/dockter</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">@stencila/dockter</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1> @stencila/dockter</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<div align="center">
+					<img src="http://stenci.la/img/logo-name.png" alt="Stencila" style="max-width:100px">
+				</div>
+				<br>
+				<h1 id="dockter-a-docker-image-builder-for-researchers">Dockter : a Docker image builder for researchers</h1>
+				<p><a href="https://travis-ci.org/stencila/dockter"><img src="https://travis-ci.org/stencila/dockter.svg?branch=master" alt="Build status"></a>
+					<a href="https://codecov.io/gh/stencila/dockter"><img src="https://codecov.io/gh/stencila/dockter/branch/master/graph/badge.svg" alt="Code coverage"></a>
+					<a href="https://greenkeeper.io/"><img src="https://badges.greenkeeper.io/stencila/dockter.svg" alt="Greenkeeper badge"></a>
+					<a href="https://www.npmjs.com/package/@stencila/dockter"><img src="http://img.shields.io/npm/v/@stencila/dockter.svg?style=flat" alt="NPM"></a>
+					<a href="https://gitter.im/stencila/stencila"><img src="https://badges.gitter.im/stencila/stencila.svg" alt="Chat"></a>
+				<a href="https://stencila.github.io/dockter/"><img src="https://img.shields.io/badge/docs-API-blue.svg" alt="Docs"></a></p>
+				<p>Docker is a good tool for creating reproducible computing environments. But creating truly reproducible Docker images can be difficult. Dockter aims to make it easier for researchers to create Docker images for their research projects. Dockter automatically creates and manages a Docker image for <em>your</em> project based on <em>your</em> source source code.</p>
+				<blockquote>
+					<p>🦄 Features that are not yet implemented are indicated by unicorn emoji. Usually they have a link next to them, like this 🦄 <a href="https://github.com/stencila/dockter/issues/2">#2</a>, indicating the relevent issue where you can help make the feature a reality. It&#39;s <a href="http://tom.preston-werner.com/2010/08/23/readme-driven-development.html">readme driven development</a> with calls to action to chase after mythical vaporware creatures! So hip.</p>
+				</blockquote>
+				<!-- Automatically generated TOC. Don't edit, `make docs` instead>
+
+<!-- toc -->
+				<ul>
+					<li><a href="#features">Features</a><ul>
+							<li><a href="#automatically-builds-a-docker-image-for-your-project">Automatically builds a Docker image for your project</a><ul>
+									<li><a href="#r">R</a></li>
+									<li><a href="#python">Python</a></li>
+									<li><a href="#nodejs">Node.js</a></li>
+									<li><a href="#jupyter">Jupyter</a></li>
+								</ul>
+							</li>
+							<li><a href="#efficiently-handling-of-updates-to-project-code">Efficiently handling of updates to project code</a></li>
+							<li><a href="#generates-structured-meta-data-for-your-project">Generates structured meta-data for your project</a></li>
+							<li><a href="#easy-to-pick-up-easy-to-throw-away">Easy to pick up, easy to throw away</a></li>
+						</ul>
+					</li>
+					<li><a href="#install">Install</a><ul>
+							<li><a href="#cli">CLI</a></li>
+							<li><a href="#package">Package</a></li>
+						</ul>
+					</li>
+					<li><a href="#use">Use</a><ul>
+							<li><a href="#cli-1">CLI</a><ul>
+									<li><a href="#compile-a-project">Compile a project</a></li>
+									<li><a href="#build-a-docker-image">Build a Docker image</a></li>
+									<li><a href="#execute-a-docker-image">Execute a Docker image</a></li>
+								</ul>
+							</li>
+							<li><a href="#router-and-server">Router and server</a></li>
+						</ul>
+					</li>
+					<li><a href="#architecture">Architecture</a></li>
+					<li><a href="#contribute">Contribute</a><ul>
+							<li><a href="#linting-and-testing">Linting and testing</a></li>
+							<li><a href="#documentation-generation">Documentation generation</a></li>
+							<li><a href="#commit-messages">Commit messages</a></li>
+							<li><a href="#continuous-integration">Continuous integration</a></li>
+						</ul>
+					</li>
+					<li><a href="#see-also">See also</a></li>
+					<li><a href="#faq">FAQ</a></li>
+					<li><a href="#acknowledgments">Acknowledgments</a></li>
+				</ul>
+				<!-- tocstop -->
+				<h2 id="features">Features</h2>
+				<h3 id="automatically-builds-a-docker-image-for-your-project">Automatically builds a Docker image for your project</h3>
+				<p>Dockter scans your project folder and builds a Docker image for it. If the the folder already has a Dockerfile, then Dockter will build the image from that. If not, Dockter will scan the files in the folder, generate a <code>.Dockerfile</code> and build the image from that. How Dockter builds the image from your source code depends on the language.</p>
+				<h4 id="r">R</h4>
+				<p>If the folder contains a R <a href="http://r-pkgs.had.co.nz/description.html"><code>DESCRIPTION</code></a> file then Docker will build an image with the R packages listed under <code>Imports</code> installed. e.g.</p>
+				<pre><code>Package: myrproject
+Version: <span class="hljs-number">1.0</span><span class="hljs-number">.0</span>
+Date: <span class="hljs-number">2017</span><span class="hljs-number">-10</span><span class="hljs-number">-01</span>
+Imports:
+   ggplot2</code></pre><p>The <code>Package</code> and <code>Version</code> fields are required in a <code>DESCRIPTION</code> file. The <code>Date</code> field is used to define which CRAN snapshot to use. MRAN daily snapshots began <a href="https://cran.microsoft.com/snapshot/2014-09-08">2014-09-08</a> so the date should be on or after that.</p>
+				<p>If the folder does not contain a <code>DESCRIPTION</code> file then Dockter will scan all the R files (files with the extension <code>.R</code> or <code>.Rmd</code>) in the folder for package import or usage statements, like <code>library(package)</code> and <code>package::function()</code>, and create a <code>.DESCRIPTION</code> file for you.</p>
+				<p>If the folder contains a <code>main.R</code> file, Dockter will set that to be the default script to run in any container created from the image.</p>
+				<h4 id="python">Python</h4>
+				<p>If the folder contains a 🦄 <a href="https://github.com/stencila/dockter/issues/3">#3</a> <a href="https://pip.readthedocs.io/en/1.1/requirements.html"><code>requirements.txt</code></a> file, or a 🦄 <a href="https://github.com/stencila/dockter/issues/4">#4</a> <a href="https://github.com/pypa/pipfile"><code>Pipfile</code></a>, Dockter will copy it into the Docker image and use <code>pip</code> to install the specified packages.</p>
+				<p>If the folder does not contain either of those files then Dockter will 🦄 <a href="https://github.com/stencila/dockter/issues/5">#5</a> scan all the folder&#39;s <code>.py</code> files for <code>import</code> statements and create a <code>.requirements.txt</code> file for you.</p>
+				<h4 id="node-js">Node.js</h4>
+				<p>If the folder contains a 🦄 <a href="https://github.com/stencila/dockter/issues/7">#7</a> <a href="https://docs.npmjs.com/files/package.json"><code>package.json</code></a> file, Dockter will copy it into the Docker image and use <code>npm</code> to install the specified packages.</p>
+				<p>If the folder does not contain a <code>package.json</code> file, Dockter will 🦄 <a href="https://github.com/stencila/dockter/issues/8">#8</a> scan all the folder&#39;s <code>.js</code> files for <code>import</code> or <code>require</code> statements and create a <code>.package.json</code> file for you.</p>
+				<h4 id="jupyter">Jupyter</h4>
+				<p>If the folder contains any 🦄 <a href="https://github.com/stencila/dockter/issues/9">#9</a> <code>.ipynb</code> files, Dockter will scan the code cells in those files for any Python <code>import</code> or R <code>library</code> statements and extract a list of package dependencies. It will also  🦄 <a href="https://github.com/stencila/dockter/issues/10">#10</a> add Jupyter to the built Docker image.</p>
+				<h3 id="efficiently-handling-of-updates-to-project-code">Efficiently handling of updates to project code</h3>
+				<p>Docker layered filesystem has advantages but it can cause real delays when you are updating your project dependencies. For example, see <a href="https://github.com/npm/npm/issues/11446">this issue</a> for the workarounds used by Node.js developers to prevent long waits when they update their <code>package.json</code>. The reason this happens is that when you update a requirements file Docker throws away all the subsequent layers, including the one where you install all your package dependencies.</p>
+				<p>Here&#39;s a simple motivating <a href="fixtures/tests/py-pandas">example</a> of a Dockerized Python project. It&#39;s got a <a href="https://pypi.org/project/pip/"><code>pip</code></a> <code>requirements.txt</code> file which specifies that the project requires <code>pandas</code> which, to ensure reproducibility, is pinned to version <code>0.23.0</code>,</p>
+				<pre><code>pandas==<span class="hljs-number">0.23</span><span class="hljs-number">.0</span></code></pre><p>The project has also got a <code>Dockerfile</code> that specifies which Python version we want, copies <code>requirements.txt</code> into the image, and installs the packages:</p>
+				<pre><code class="language-Dockerfile"><span class="hljs-keyword">FROM</span> python:<span class="hljs-number">3.7</span>.<span class="hljs-number">0</span>
+
+<span class="hljs-keyword">COPY</span><span class="bash"> requirements.txt .
+</span><span class="hljs-keyword">RUN</span><span class="bash"> pip install -r requirements.txt</span></code></pre>
+				<p>You can build a Docker image for that project using Docker,</p>
+				<pre><code class="language-bash">docker build .</code></pre>
+				<p>Docker will download the base Python image (if you don&#39;t yet have it), and download five packages (<code>pandas</code> and it&#39;s four dependencies) and install them. This took over 9 minutes when we ran it.</p>
+				<p>Now, let&#39;s say that we want to do some plotting in our library, so we add <code>matplotlib</code> as a dependency in <code>requirements.txt</code>,</p>
+				<pre><code>pandas==<span class="hljs-number">0.23</span><span class="hljs-number">.0</span>
+matplotlib==<span class="hljs-number">3.0</span><span class="hljs-number">.0</span></code></pre><p>When we do <code>docker build .</code> again Docker notices that the <code>requirements.txt</code> file has changed and so throws away that layer and all subsequent ones. This means that it will download and install <strong>all</strong> the necessary packages again, including the ones that we previously installed - and takes longer than the first install. For a more contrived illustration of this, simply add a space to a line in the <code>requirements.txt</code> file and notice how the package install gets repeated all over again.</p>
+				<p>Now, let&#39;s add a special <code># dockter</code> comment to the Dockerfile before the <code>COPY</code> directive,</p>
+				<pre><code class="language-Dockerfile"><span class="hljs-keyword">FROM</span> python:<span class="hljs-number">3.7</span>.<span class="hljs-number">0</span>
+
+<span class="hljs-comment"># dockter</span>
+
+<span class="hljs-keyword">COPY</span><span class="bash"> requirements.xt .
+</span><span class="hljs-keyword">RUN</span><span class="bash"> pip install -r requirements.txt</span></code></pre>
+				<p>The comment is ignored by Docker but tells <code>dockter</code> to run all subsequent directives and commit them into a single layer,</p>
+				<pre><code class="language-bash">dockter build .</code></pre>
+				<blockquote>
+					<p>🔧 Finish description of commit-based approach and illustrate speed up over normal Docker builds</p>
+				</blockquote>
+				<h3 id="generates-structured-meta-data-for-your-project">Generates structured meta-data for your project</h3>
+				<p>Dockter has been built to expose a JSON-LD API so that it works with other tools. It will parse a Dockerfile into a JSON-LD <a href="https://schema.org/SoftwareSourceCode"><code>SoftwareSourceCode</code></a> node extracting meta-data about the Dockerfile and build it into a <code>SoftwareEnvironment</code> node with links to the source files and the build image.</p>
+				<blockquote>
+					<p>🔧 Illustrate how this is done for all project sources including non Dockerfiles</p>
+				</blockquote>
+				<blockquote>
+					<p>🔧 Replace this JSON-LD with final version</p>
+				</blockquote>
+				<pre><code class="language-json">{
+  <span class="hljs-attr">"@context"</span>: <span class="hljs-string">"https://schema.stenci.la"</span>,
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"SoftwareSourceCode"</span>,
+  <span class="hljs-attr">"id"</span>: <span class="hljs-string">"https://hub.docker.com/#sha256:27d6e441706e89dac442c69c3565fc261b9830dd313963cb5488ba418afa3d02"</span>,
+  <span class="hljs-attr">"author"</span>: [],
+  <span class="hljs-attr">"text"</span>: <span class="hljs-string">"FROM busybox\nLABEL description=\"Prints the current date and time at UTC, to the nearest second, in ISO-8601 format\" \\\n      author=\"Nokome Bentley &lt;nokome@stenci.la&gt;\"\nCMD date -u -Iseconds\n"</span>,
+  <span class="hljs-attr">"programmingLanguage"</span>: <span class="hljs-string">"Dockerfile"</span>,
+  <span class="hljs-attr">"messages"</span>: [],
+  <span class="hljs-attr">"description"</span>: <span class="hljs-string">"Prints the current date and time at UTC, to the nearest second, in ISO-8601 format"</span>
+}</code></pre>
+				<h3 id="easy-to-pick-up-easy-to-throw-away">Easy to pick up, easy to throw away</h3>
+				<p>Dockter is designed to make it easier to get started creating Docker images for your project. But it&#39;s also designed not to get in your way or restrict you from using bare Docker. You can easily and individually override any of the steps that Dockter takes to build an image. </p>
+				<ul>
+					<li><p><em>Code analysis</em>: To stop Dockter doing code analysis and take over specifying your project&#39;s package dependencies, just remove the leading &#39;.&#39; from the <code>.DESCRIPTION</code>, <code>.requirements.txt</code> or <code>.package.json</code> file that Dockter generates. </p>
+					</li>
+					<li><p><em>Dockerfile generation</em>: Dockter aims to generate readable Dockerfiles that conform to best practices. They&#39;re a good place to start learning how to write your own Dockerfiles. To stop Dockter generating a <code>.Dockerfile</code>, and start editing it yourself, just rename it to <code>Dockerfile</code>.</p>
+					</li>
+					<li><p><em>Image build</em>: Dockter manage builds use a special comment in the <code>Dockerfile</code>, so you can stop using Dockter altogether and build the same image using Docker (it will just take longer if you change you project dependencies).</p>
+					</li>
+				</ul>
+				<h2 id="install">Install</h2>
+				<p>Dockter is available as pre-compiled, standalone command line tool (CLI), or as a Node.js package. In both cases, if you want to use Dockter to build Docker images, you will need to <a href="https://docs.docker.com/install/">install Docker</a> if you don&#39;t already have it.</p>
+				<h3 id="cli">CLI</h3>
+				<p>Download the command line interface (CLI) as a pre-compiled, standalone binary for Windows, MacOS or Linux from the <a href="https://github.com/stencila/dockter/releases">releases page</a>.</p>
+				<p>For example, on Linux, you can download and install Dockter using the following command (change the version to the latest):</p>
+				<pre><code class="language-bash">curl -sL https://github.com/stencila/dockter/releases/download/v0.2.4/dockter-linux -o ~/.<span class="hljs-built_in">local</span>/bin/dockter &amp;&amp; chmod +x ~/.<span class="hljs-built_in">local</span>/bin/dockter</code></pre>
+				<h3 id="package">Package</h3>
+				<p>If you want to integrate Dockter into another application or package, it is also available as a Node.js package :</p>
+				<pre><code class="language-bash">npm install @stencila/dockter</code></pre>
+				<h2 id="use">Use</h2>
+				<h3 id="cli">CLI</h3>
+				<p>The command line tool has three primary commands <code>compile</code>, <code>build</code> and <code>execute</code>. To get an overview of the commands available use the <code>--help</code> option i.e.</p>
+				<pre><code class="language-bash">dockter --<span class="hljs-built_in">help</span></code></pre>
+				<p>To get more detailed help on a particular command, also include the command name e.g</p>
+				<pre><code class="language-bash">dockter compile --<span class="hljs-built_in">help</span></code></pre>
+				<h4 id="compile-a-project">Compile a project</h4>
+				<p>The <code>compile</code> command compiles a project folder into a specification of a software environment. It scans the folder for source code and package requirement files, parses them, and 🦄 creates an <code>.environ.jsonld</code> file. This file contains the information needed to build a Docker image for your project.</p>
+				<p>For example, let&#39;s say your project folder has a single R file, <code>main.R</code> which uses the R package <code>lubridate</code> to print out the current time:</p>
+				<pre><code class="language-R">lubridate::now()</code></pre>
+				<p>Let&#39;s compile that project and inspect the compiled software environment. Change into the project directory and run the <code>compile</code> command. The default output format is JSON but you can get YAML, which is easier to read, by using the <code>--format=yaml</code> option.</p>
+				<pre><code class="language-bash">dockter compile --format=yaml</code></pre>
+				<p>The output from this command is a YAML document describing the project&#39;s software environment including it&#39;s dependencies (in this case just <code>lubridate</code>). The environment&#39;s name is taken from the name of the folder, in this case <code>rdate</code>.</p>
+				<pre><code class="language-yaml"><span class="hljs-attr">name:</span> <span class="hljs-string">rdate</span>
+<span class="hljs-attr">datePublished:</span> <span class="hljs-string">'2018-10-21'</span>
+<span class="hljs-attr">softwareRequirements:</span>
+<span class="hljs-attr">  - description:</span> <span class="hljs-string">|-</span>
+      <span class="hljs-string">Functions</span> <span class="hljs-string">to</span> <span class="hljs-string">work</span> <span class="hljs-string">with</span> <span class="hljs-string">date-times</span> <span class="hljs-string">and</span> <span class="hljs-attr">time-spans:</span> <span class="hljs-string">fast</span> <span class="hljs-string">and</span> <span class="hljs-string">user</span>
+      <span class="hljs-string">friendly</span> <span class="hljs-string">parsing</span> <span class="hljs-string">of</span> <span class="hljs-string">date-time</span> <span class="hljs-string">data,</span> <span class="hljs-string">extraction</span> <span class="hljs-string">and</span> <span class="hljs-string">updating</span> <span class="hljs-string">of</span> <span class="hljs-string">components</span> <span class="hljs-string">of</span>
+      <span class="hljs-string">a</span> <span class="hljs-string">date-time</span> <span class="hljs-string">(years,</span> <span class="hljs-string">months,</span> <span class="hljs-string">days,</span> <span class="hljs-string">hours,</span> <span class="hljs-string">minutes,</span> <span class="hljs-string">and</span> <span class="hljs-string">seconds),</span> <span class="hljs-string">algebraic</span>
+      <span class="hljs-string">manipulation</span> <span class="hljs-string">on</span> <span class="hljs-string">date-time</span> <span class="hljs-string">and</span> <span class="hljs-string">time-span</span> <span class="hljs-string">objects.</span> <span class="hljs-string">The</span> <span class="hljs-string">'lubridate'</span> <span class="hljs-string">package</span> <span class="hljs-string">has</span>
+      <span class="hljs-string">a</span> <span class="hljs-string">consistent</span> <span class="hljs-string">and</span> <span class="hljs-string">memorable</span> <span class="hljs-string">syntax</span> <span class="hljs-string">that</span> <span class="hljs-string">makes</span> <span class="hljs-string">working</span> <span class="hljs-string">with</span> <span class="hljs-string">dates</span> <span class="hljs-string">easy</span> <span class="hljs-string">and</span>
+      <span class="hljs-string">fun.</span>
+      <span class="hljs-string">Parts</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">'CCTZ'</span> <span class="hljs-string">source</span> <span class="hljs-string">code,</span> <span class="hljs-string">released</span> <span class="hljs-string">under</span> <span class="hljs-string">the</span> <span class="hljs-string">Apache</span> <span class="hljs-number">2.0</span> <span class="hljs-string">License,</span>
+      <span class="hljs-string">are</span> <span class="hljs-string">included</span> <span class="hljs-string">in</span> <span class="hljs-string">this</span> <span class="hljs-string">package.</span> <span class="hljs-string">See</span> <span class="hljs-string">&lt;https://github.com/google/cctz&gt;</span> <span class="hljs-string">for</span> <span class="hljs-string">more</span>
+      <span class="hljs-string">details.</span>
+<span class="hljs-attr">    name:</span> <span class="hljs-string">lubridate</span>
+<span class="hljs-attr">    urls:</span>
+<span class="hljs-bullet">      -</span> <span class="hljs-string">'http://lubridate.tidyverse.org'</span>
+<span class="hljs-bullet">      -</span> <span class="hljs-string">|-</span>
+
+<span class="hljs-attr">        https:</span><span class="hljs-string">//github.com/tidyverse/lubridate</span>
+<span class="hljs-attr">    authors:</span>
+<span class="hljs-bullet">      -</span> <span class="hljs-meta">&amp;ref_0</span>
+<span class="hljs-attr">        givenNames:</span>
+<span class="hljs-bullet">          -</span> <span class="hljs-string">Vitalie</span>
+<span class="hljs-attr">        familyNames:</span>
+<span class="hljs-bullet">          -</span> <span class="hljs-string">Spinu</span>
+<span class="hljs-attr">        name:</span> <span class="hljs-string">Vitalie</span> <span class="hljs-string">Spinu</span>
+<span class="hljs-string">...</span></code></pre>
+				<h4 id="build-a-docker-image">Build a Docker image</h4>
+				<p>Usually, you&#39;ll compile and build a Docker image for your project in one step using the <code>build</code> command. This takes the output of the <code>compile</code> command, generates a <code>.Dockerfile</code> for it and gets Docker to build that image.</p>
+				<pre><code class="language-bash">dockter build</code></pre>
+				<p>After the image has finished building you should have a new docker image on your machine, called <code>rdate</code>:</p>
+				<pre><code class="language-bash">&gt; docker images
+REPOSITORY        TAG                 IMAGE ID            CREATED              SIZE
+rdate             latest              545aa877bd8d        About a minute ago   766MB</code></pre>
+				<h4 id="execute-a-docker-image">Execute a Docker image</h4>
+				<p>You can use Docker to run the created image. Or use Dockter&#39;s <code>execute</code> command to compile, build and run your docker image in one step:</p>
+				<pre><code class="language-bash">&gt; dockter execute
+2018-10-23 00:58:39</code></pre>
+				<h3 id="router-and-server">Router and server</h3>
+				<p>The <a href="https://expressjs.com">Express</a> router provides <code>PUT /compile</code> and <code>PUT /execute</code> endpoints (which do the same thing as the corresponding CLI commands). You can serve them using,</p>
+				<pre><code class="language-bash">npm start</code></pre>
+				<p>Or, during development using,</p>
+				<pre><code class="language-bash">npm run server</code></pre>
+				<p>A minimal example of how to integrate the router into your own Express server,</p>
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)()
+<span class="hljs-keyword">const</span> { docker } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@stencila/dockter'</span>)
+
+<span class="hljs-keyword">const</span> app = express()
+app.use(<span class="hljs-string">'/docker'</span>, docker)
+app.listen(<span class="hljs-number">3000</span>)</code></pre>
+				<h2 id="architecture">Architecture</h2>
+				<p>Dockter implements a compiler design pattern. Source files are <em>parsed</em> into a <code>SoftwareEnvironment</code> instance (the equivalent of an AST (Abstract Syntax Tree) in other programming language compilers) which is then used to generate a <code>Dockerfile</code> which is then built into a Docker image.</p>
+				<p>The parser classes e.g. <code>PythonParser</code>, <code>RParser</code> scan for relevant source files and generate <code>SoftwareEnvironment</code> instances.
+					The generator classes e.g. <code>PythonGenerator</code>, <code>RGenerator</code> generates a <code>Dockerfile</code> for a given <code>SoftwareEnvironment</code>.
+					<code>DockerGenerator</code> is a super-generator which combines the other generators.
+					<code>DockerBuilder</code> class builds
+				<code>DockerCompiler</code> links all of these together.</p>
+				<p>For example, if a folder has single file in it <code>code.py</code>, <code>PythonParser</code> will parse that file and create a <code>SoftwareEnvironment</code> instance, which <code>DockerGenerator</code> uses to generate a <code>Dockerfile</code>, which <code>DockerBuilder</code> uses to build a Docker image.</p>
+				<h2 id="contribute">Contribute</h2>
+				<p>We 💕 contributions! All contributions: ideas 💡, bug reports 🐛, documentation 🗎, code 💾. See <a href="CONTRIBUTING.md">CONTRIBUTING.md</a> for more details. </p>
+				<p>To get started on developing the code,</p>
+				<pre><code class="language-bash">git <span class="hljs-built_in">clone</span> https://github.com/stencila/dockter
+<span class="hljs-built_in">cd</span> dockter
+npm install</code></pre>
+				<p>Then take a look at the docs (<a href="https://stencila.github.io/dockter/">online</a> or inline) and start hacking! </p>
+				<p>To run the CLI during development use, <code>npm run cli -- &lt;args&gt;</code> e.g.</p>
+				<pre><code class="language-bash">npm run cli -- compile tests/fixtures/dockerfile-date/Dockerfile</code></pre>
+				<p>This uses <code>ts-node</code> to compile and run Typescript on the fly so that you don&#39;t need to do a build step first.</p>
+				<h3 id="linting-and-testing">Linting and testing</h3>
+				<p>Please check that your changes pass linting and unit tests,</p>
+				<pre><code class="language-bash">npm run lint <span class="hljs-comment"># or, make lint</span>
+npm <span class="hljs-built_in">test</span> <span class="hljs-comment"># or, make text</span></code></pre>
+				<p>Use <code>npm test -- &lt;test file path&gt;</code> to run a single test file.</p>
+				<p>You can setup a Git pre-commit hook to perform these checks automatically before each commit using <code>make hooks</code>.</p>
+				<p>You can check that any changes you&#39;ve made are covered 🏅 by unit tests using,</p>
+				<pre><code class="language-bash">npm run cover <span class="hljs-comment"># or, make cover</span>
+open coverage/lcov-report/index.html</code></pre>
+				<h3 id="documentation-generation">Documentation generation</h3>
+				<p>If you&#39;ve been working on in-code documentation 🙏 you can check that by building and viewing the docs,</p>
+				<pre><code class="language-bash">npm run docs <span class="hljs-comment"># or, make docs</span>
+open docs/index.html</code></pre>
+				<h3 id="commit-messages">Commit messages</h3>
+				<p>Please use <a href="https://github.com/conventional-changelog/conventional-changelog">conventional changelog</a> style commit messages e.g. <code>docs(readme): fixed spelling mistake</code>. This helps with automated semantic versioning. To make this easier, <a href="http://commitizen.github.io/cz-cli/">Commitzen</a> is a development dependency and can be used via <code>npm</code> or <code>make</code>:</p>
+				<pre><code class="language-bash">npm run commit <span class="hljs-comment"># or, make commit</span></code></pre>
+				<h3 id="continuous-integration">Continuous integration</h3>
+				<p>Linting, test coverage, binary builds, package builds, and documentation generation are done on <a href="https://travis-ci.org/stencila/dockter">Travis CI</a>. <a href="https://github.com/semantic-release/semantic-release"><code>semantic-release</code></a> is enabled to automate version management: minor version releases are done if any <code>feat(...)</code> commits are pushed, patch version releases are done if any <code>fix(...)</code> commits are pushed. Releases are made to <a href="https://www.npmjs.com/package/@stencila/dockter">NPM</a> and <a href="https://github.com/stencila/dockter/releases">Github Releases</a>.</p>
+				<h2 id="see-also">See also</h2>
+				<p>There are several projects that create Docker images from source code and/or requirements files:</p>
+				<ul>
+					<li><a href="https://github.com/alibaba/derrick"><code>alibaba/derrick</code></a></li>
+					<li><a href="https://github.com/jupyter/repo2docker"><code>jupyter/repo2docker</code></a></li>
+					<li><a href="https://github.com/Gueils/whales"><code>Gueils/whales</code></a></li>
+					<li><a href="https://github.com/o2r-project/containerit"><code>o2r-project/containerit</code></a></li>
+					<li><a href="https://github.com/openshift/source-to-image"><code>openshift/source-to-image</code></a></li>
+					<li><a href="https://github.com/ViDA-NYU/reprozip%5D"><code>ViDA-NYU/reprozip</code></a></li>
+				</ul>
+				<p>Dockter is similar to <code>repo2docker</code>, <code>containerit</code>, and <code>reprozip</code> in that it is aimed at researchers doing data analysis (and supports R) whereas most other tools are aimed at software developers (and don&#39;t support R). Dockter differs to these projects principally in that by default (but optionally) it installs the necessary Stencila language packages so that the image can talk to Stencila client interfaces an provide code execution services. Like <code>repo2docker</code> it allows for multi-language images but has the additional features of package dependency analysis of source code, managed builds and generated of image meta-data.</p>
+				<p>If you don&#39;t want to build a Docker image and just want a tool that helps determining the package dependencies of your source code check out:</p>
+				<ul>
+					<li>Node.js: <a href="https://github.com/browserify/detective"><code>detective</code></a></li>
+					<li>Python: <a href="https://docs.python.org/3.7/library/modulefinder.html"><code>modulefinder</code></a></li>
+					<li>R: <a href="https://github.com/hadley/requirements"><code>hadley/requirements</code></a></li>
+				</ul>
+				<h2 id="faq">FAQ</h2>
+				<p><em>Why is this a Node.js package?</em></p>
+				<p>We&#39;ve implemented this as a Node.js package for easier integration into Stencila&#39;s Node.js based desktop and cloud deployments.</p>
+				<h2 id="acknowledgments">Acknowledgments</h2>
+				<p>Dockter was inspired by similar tools for researchers including <a href="https://github.com/binder-project/binder"><code>binder</code></a> and <a href="https://github.com/jupyter/repo2docker"><code>repo2docker</code></a>. It relies on many great open source projects, in particular:</p>
+				<ul>
+					<li><a href="https://github.com/metacran/crandb"><code>crandb</code></a></li>
+					<li><a href="https://www.npmjs.com/package/dockerode"><code>dockerode</code></a></li>
+					<li><a href="https://www.npmjs.com/package/docker-file-parser"><code>docker-file-parser</code></a></li>
+					<li><a href="https://github.com/r-hub/sysreqsdb"><code>sysreqsdb</code></a></li>
+					<li>and of course, <a href="https://www.docker.com/">Docker</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_dockerbuilder_.html">"<wbr>Docker<wbr>Builder"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_dockercompiler_.html">"<wbr>Docker<wbr>Compiler"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_dockerexecutor_.html">"<wbr>Docker<wbr>Executor"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_dockergenerator_.html">"<wbr>Docker<wbr>Generator"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_dockerparser_.html">"<wbr>Docker<wbr>Parser"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_doer_.html">"<wbr>Doer"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_generator_.html">"<wbr>Generator"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_parser_.html">"<wbr>Parser"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_pythongenerator_.html">"<wbr>Python<wbr>Generator"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_pythonparser_.html">"<wbr>Python<wbr>Parser"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_rgenerator_.html">"RGenerator"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_rparser_.html">"RParser"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_cli_.html">"cli"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_context_.html">"context"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_errors_.html">"errors"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_index_.html">"index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_router_.html">"router"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_server_.html">"server"</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
